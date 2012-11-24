@@ -1,0 +1,11 @@
+A few years ago a colleague (SW tester) had a bright idea... to create a database with a web front end to manage all our test results.
+The was a great time saver as it freed us up from making test reports to do more interesting work. 
+It also kept our managers off our backs as they could check the results themselves online.
+This idea expanded over the years into a feature that was essential to the daily working life.
+Regression trending, test coverage and failures could be seen in an instant. 
+
+Unfortunately the company sold off its divisions to other companies and a number of us left and went to work for different divisions.
+We couldn't take the newest code with us (ethically) so we ended up with older versions which we then improved (forking) but were never able to merge back.
+
+Switching jobs again revealed that another division needed a test result management system.
+After a few times of reinventing the wheel I have decided to start with a clean sheet, design it better, make it open source then everyone can profit from it.
