@@ -24,25 +24,32 @@ class mysqlDatabase implements iDatabase
 		$sql = "SHOW COLUMNS FROM summary";
 		
 		$statement = $this->pdo->query($sql);
-        while($row = $statement->fetch(PDO::FETCH_ASSOC))
-        {        
-           $headerNames[] = $row['Field'];
-        }
-        
+		if (!empty($statement))
+		{
+	        while($row = $statement->fetch(PDO::FETCH_ASSOC))
+	        {        
+	           $headerNames[] = $row['Field'];
+	        }
+		}
 		return $headerNames;
 	}
 	
 	/*public function RetrieveTableData($ColumnNames)*/
 	public function RetrieveTableData($filter)	
 	{
+		$json="";
+		
 		$sql = "SELECT * from summary $filter";
 		
 		$statement = $this->pdo->query($sql);
 		
-	    while($row = $statement->fetch(PDO::FETCH_NUM))
-        {        
-        	$json[]=$row;        	
-        }
+		if (!empty($statement))
+		{
+		    while($row = $statement->fetch(PDO::FETCH_NUM))
+	        {        
+	        	$json[]=$row;        	
+	        }
+		}
         return $json;
 	}
 	

@@ -41,7 +41,9 @@ else if (isset($_GET['tableData']))
       	 $filter = "WHERE ";      	
 	      foreach ($_GET['filter'] as $key => $value)
 	      {
-	         $filter .= "$key IN ('$value')"; // TODO: ereg_replace A,B by 'A','B'	         		     
+	      	 $val = preg_replace('/(\w+[a-zA-Z0-9])/', '\'$1\'' , $value);
+	      	 //print $val . ":\r\n";
+	         $filter .= "$key IN ($val)"; // TODO: single letters are not replaced	         		     
 		     $filter .= " AND ";
 		  }
 	      $filter = substr($filter, 0, (strlen($filter) - strlen(" AND ")) );
