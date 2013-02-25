@@ -21,8 +21,8 @@
 								{
 									// Create a select option box for each table column
 									gHeaders.push(field);
-									header += "<td>" + field + "</td>";
-									content += '<td><select name="' + field + '" id="' + field + '" multiple size="5">';
+									header += '<td>' + field + "</td>";
+									content += '<td><select class="ui-widget-content" name="' + field + '" id="' + field + '" multiple size="5">';
 									//content += '<option value=null>Not selected</option>';
 									++$first;
 								}
@@ -37,10 +37,11 @@
 						});
 						
 						// Add the select option box to the main page
-						$('#menu').append("<table border='0'><tr>" + header + "</tr><tr>" + content + "</tr></table>");
-						$('#menu').append('<button>Show results</button>');
+						$('#menu').append('<table border="0"><tr class="ui-widget-content">' + header + '</tr><tr class="ui-widget-content">' + content + "</tr></table>");
+						$('#menu').append('<button id="buttonres">Show results</button>');
+						$('#menu').append('<button id="buttontrend">Show trend results</button>');
 						
-						$("button").button().on("click", function(){
+						$("#buttonres").button().on("click", function(){
 						var returnObj={};
 							for (i=0; i < gHeaders.length ; i++)
 							{
@@ -50,7 +51,19 @@
 								}
 							};
                             return DisplayTable(returnObj)
-                         } );							 
+                         } );
+						
+						$("#buttontrend").button().on("click", function(){
+							var returnObj={};
+								for (i=0; i < gHeaders.length ; i++)
+								{
+									if ($('#' + gHeaders[i]).val())
+									{								   
+								       returnObj[gHeaders[i]] = $('#' + gHeaders[i]).val();							       
+									}
+								};
+	                            return DisplaySelectTable(returnObj)
+	                         } );							 
 									//return DisplaySelectTable("#SummaryID")} );
 					});
 								

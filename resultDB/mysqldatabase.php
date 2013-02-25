@@ -73,7 +73,7 @@ class mysqlDatabase implements iDatabase
         return $returnData;
 	}
 	
-	public function RetrieveSortedTableData($x, $y, $z)	
+	public function RetrieveSortedTableData($x, $y, $z, $filter)	
 	{
 		$sql = "SELECT $x, $y from summary";
 		$statement = $this->pdo->query($sql);
@@ -90,7 +90,7 @@ class mysqlDatabase implements iDatabase
         	{        		        		
         		$matrix[$col][$row] = "-";           		
         	}
-        }       
+        }             
         
         $label[]=$x;
 	    foreach ($rowName as $row => $val)
@@ -98,7 +98,7 @@ class mysqlDatabase implements iDatabase
         	$label[]="SWID" . $row;     	
         }
 		
-		$sql = "SELECT $x, $y, $z from summary";
+		$sql = "SELECT $x, $y, $z from summary $filter";
 		$statement = $this->pdo->query($sql);
 		
 	    while($row = $statement->fetch(PDO::FETCH_NUM))

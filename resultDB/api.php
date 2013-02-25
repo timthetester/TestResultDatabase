@@ -59,11 +59,23 @@ else if (isset($_GET['tableData']))
 }
 else if (isset($_GET['sortedTableData']))
 {	
+	  if (isset($_GET['filter']))
+      {
+      	 $filter = "WHERE ";      	
+	      foreach ($_GET['filter'] as $key => $value)
+	      {
+	      	 $val = preg_replace('/(\w+[a-zA-Z0-9])/', '\'$1\'' , $value);	      	 
+	         $filter .= "$key IN ($val)"; // TODO: single letters are not replaced	         		     
+		     $filter .= " AND ";
+		  }
+	      $filter = substr($filter, 0, (strlen($filter) - strlen(" AND ")) );
+      }
+      
    	  $db = new DatabaseCreator();
       $database = $db->Create("mysql");
       $database->Connect();
 
-      $returnData = $database->RetrieveSortedTableData("TestName","SWID","Actual");
+      $returnData = $database->RetrieveSortedTableData("TestName","SWID","Actual", $filter);
       $json["labels"] = $returnData[0];
       $json["aaData"] = $returnData[1];
                     

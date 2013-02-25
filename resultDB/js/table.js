@@ -1,7 +1,7 @@
 			// When the document is loaded perform an ajax query using jquery.
 			// Callback is used to return the data when the ajax data is ready.
             var oDataTable = "";
-			function DisplayTable(Label) {				
+			function DisplayTable(filters) {				
 				$.ajax({  
 					url: "api.php?headers",  
 					cache: false,
@@ -10,7 +10,7 @@
 						
 						// Pass filter through to api
 						var filter="";
-						$.each( Label, function(key, value){
+						$.each( filters, function(key, value){
 							filter += "&filter[" + key + "]=" + value;
 						});
 						

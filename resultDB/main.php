@@ -22,10 +22,15 @@
 
 <body>
 
-<H1>My Test results</H1>
 
-<div id="menu">
+<div class="ui-widget">  
 
+<div class="ui-widget-header ui-corner-top">  
+   <h1>Test results</h1></div>  
+
+       
+      <div class="ui-widget-content ui-corner-bottom" id="menu"></div>
+ 
 </div>
 
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">

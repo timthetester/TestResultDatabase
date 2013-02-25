@@ -7,7 +7,7 @@ interface iDatabase
     public function Disconnect();
     public function RetrieveHeaderNames();
     public function RetrieveTableData($filter);
-    public function RetrieveSortedTableData($x, $y, $z);
+    public function RetrieveSortedTableData($x, $y, $z, $filter);
 }
 
 ?>
