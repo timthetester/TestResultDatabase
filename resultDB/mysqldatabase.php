@@ -37,7 +37,7 @@ class mysqlDatabase implements iDatabase
 	/*public function RetrieveTableData($ColumnNames)*/
 	public function RetrieveTableData($filter)	
 	{
-		$json="";
+		$json=array();
 		
 		$sql = "SELECT * from summary $filter";
 		
@@ -49,7 +49,7 @@ class mysqlDatabase implements iDatabase
 	        {        
 	        	$json[]=$row;        	
 	        }
-		}
+		}		
         return $json;
 	}
 	
@@ -73,11 +73,26 @@ class mysqlDatabase implements iDatabase
         return $returnData;
 	}
 	
-	public function RetrieveSortedTableData($x, $y, $z, $filter)	
+    public function RetrieveTableField($field)	
 	{
-		$sql = "SELECT $x, $y from summary";
-		$statement = $this->pdo->query($sql);
+		   $returnData = array();
+		   $sql = "SELECT DISTINCT($field) from summary";
+		   $statement = $this->pdo->query($sql);
+				   
+	       while($row = $statement->fetch(PDO::FETCH_NUM))
+           {        
+        	  $returnData[]=$row;        	
+           }
+           
 		
+        return $returnData;
+	}
+	
+	public function RetrieveSortedTableData($x, $y, $z, $filter)	
+	{		
+		$sql = "SELECT $x, $y from summary $filter";
+		$statement = $this->pdo->query($sql);
+	
 		while($row = $statement->fetch(PDO::FETCH_NUM))
         {                	
         	$columnName[$row[0]] = "a";
@@ -95,7 +110,7 @@ class mysqlDatabase implements iDatabase
         $label[]=$x;
 	    foreach ($rowName as $row => $val)
 	    {        		        		        	
-        	$label[]="SWID" . $row;     	
+        	$label[]=$y . $row;     	
         }
 		
 		$sql = "SELECT $x, $y, $z from summary $filter";

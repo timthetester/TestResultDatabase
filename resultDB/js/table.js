@@ -1,9 +1,8 @@
 			// When the document is loaded perform an ajax query using jquery.
 			// Callback is used to return the data when the ajax data is ready.
-            var oDataTable = "";
-			function DisplayTable(filters) {				
+            function DisplayTable(filters) {				
 				$.ajax({  
-					url: "api.php?headers",  
+					url: "router.php?headers",  
 					cache: false,
 					dataType : "json"
 					}).done(function( data ) {	
@@ -15,10 +14,9 @@
 						});
 						
 						// If datatable has already been created then only update it
-						if (oDataTable) 
-						{	
-							//alert('api.php?tableData' + filter);
-							oDataTable.fnReloadAjax( 'api.php?tableData' + filter); 
+						if (oDataTable != null) 
+						{								
+							oDataTable.fnReloadAjax( 'router.php?tableData' + filter); 
 						}
 						else
 						{
@@ -27,16 +25,25 @@
 							{												
 							   $('#headers').append('<th>' + data.aaData[i] + '</th>');
 							}		
-
-						//alert('api.php?tableData' + filter);
+							
 							// Using the jquery plugin (datatables) perfrom an ajax query of the table data
-							oDataTable = $('#example').dataTable( {								
-								"bProcessing": true,
-								"bJQueryUI": true,
+							oDataTable = $('#example').dataTable( {									
+								"bProcessing": true,								
 								"sPaginationType": "full_numbers",
 								"bPaginate": false,
 								"iDisplayLength": 50,
-								"sAjaxSource": 'api.php?tableData' + filter							
+								"sAjaxSource": 'router.php?tableData' + filter,
+								"sDom": 'CT<"H"lfr>tip<"F">',  //<"H"Cr><"F"ip>
+
+								"bJQueryUI": true,
+								"oTableTools": {        
+									"aButtons": [
+                                    {
+										"sExtends": "xls",
+										"sButtonText": "[Save to Excel]"
+									}],
+									"sSwfPath": "./TableTools-2.1.4/media/swf/copy_csv_xls_pdf.swf"
+								}
 							} );
 						}
 						
