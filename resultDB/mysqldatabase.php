@@ -2,6 +2,7 @@
 
 require_once "databaseinterface.php";
 require_once "DB.php";
+require "config.php";
 
 // Implement the database interface
 class mysqlDatabase implements iDatabase
@@ -10,7 +11,8 @@ class mysqlDatabase implements iDatabase
 	
 	public function Connect()
 	{		
-		$this->pdo = new PDO('mysql:host=localhost;dbname=testresult', '', '');		
+	    global $Resultdb;
+		$this->pdo = new PDO('mysql:host='.$Resultdb['host'].';dbname='.$Resultdb['db'], '', '');
 	}
     public function Disconnect()
     {

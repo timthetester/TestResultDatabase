@@ -13,8 +13,8 @@
 <script type="text/javascript" src="./ColVis-1.0.8/media/js/ColVis.min.js"></script>
 <script type="text/javascript" src="./js/reloadajax.js"></script>
 <script type="text/javascript" src="./js/helpers.js"></script>
-<script type="text/javascript" src="./js/menu.js"></script>
 <script type="text/javascript" src="./js/menu_trend.js"></script>
+<script type="text/javascript" src="./js/menu.js"></script>
 <script type="text/javascript" src="./js/table.js"></script>
 <script type="text/javascript" src="./js/tableselect.js"></script>
 <script src="./chosen/chosen.jquery.js" type="text/javascript"></script>

@@ -11,7 +11,7 @@
 						var Table1="";
 						var field="";						
 						var chosencontent = "";						
-												
+										
 						Table1 = CreateListBox(data.aaData, "First", "single");						
 						Table2 = CreateListBox(data.aaData, "Second", "single");
 						Table3 = CreateListBox(data.aaData, "Third", "single");
@@ -70,34 +70,18 @@
 								oTrendDataTable.fnDestroy();
 								oTrendDataTable = null;
 								$('#headers2').empty();
-							}							
+							}		
+						
 						   
 							var returnObj={};
-							/*if ($('#FirstList').val() != null) {
-								returnObj[$("#First").val()] = $('#FirstList').val();
-							}
-							else {
-								returnObj[$("#First").val()] = "";
-							}
-							if ($('#SecondList').val() != null) {
-								returnObj[$("#Second").val()] = $('#SecondList').val();
-							}
-							else {
-								returnObj[$("#Second").val()] = "";
-							}
-							if ($('#ThirdList').val() != null) {
-								returnObj[$("#Third").val()] = $('#ThirdList').val();
-							}
-							else {
-								returnObj[$("#Third").val()] = "";
-							}*/
-							if ($("#First").val() != null) && ($("#Second").val() != null) && ($("#Third").val() != null) ) {
+							
+							if (($("#First").val() != null) && ($("#Second").val() != null) && ($("#Third").val() != null) ) {
 								returnObj[$("#First").val()] = $('#FirstList').val();
 								returnObj[$("#Second").val()] = $('#SecondList').val();
 								returnObj[$("#Third").val()] = $('#ThirdList').val();									
-		                        return DisplaySelectTable(returnObj)  
+		                        return DisplaySelectTable(returnObj);
 						    }
-	                    } );							 									
-					}); 														
+						});
+					}); 												
 								
 			} );
